@@ -272,9 +272,7 @@ cmake_dependent_option(USE_MPS "Use MPS for macOS build" ON "MPS_FOUND" OFF)
 cmake_dependent_option(USE_NCCL "Use NCCL" ON
                        "USE_CUDA OR USE_ROCM;UNIX;NOT APPLE" OFF)
 # If USE_NCCL env var is set, override the default value
-if(DEFINED ENV{USE_NCCL})
-  set(USE_NCCL $ENV{USE_NCCL})
-endif()
+set(USE_NCCL $ENV{USE_NCCL} CACHE BOOL "Use NCCL")
 cmake_dependent_option(USE_RCCL "Use RCCL" ON USE_NCCL OFF)
 cmake_dependent_option(USE_STATIC_NCCL "Use static NCCL" OFF "USE_NCCL" OFF)
 cmake_dependent_option(USE_SYSTEM_NCCL "Use system-wide NCCL" OFF "USE_NCCL"
